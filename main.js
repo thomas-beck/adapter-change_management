@@ -101,6 +101,11 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
+   if(this.isHibernating(result)) {
+       this.emit("OFFLINE", { id: this.id });
+       log.error('ServiceNow: Instance is hibernating.' + this.id);
+       if(callback) callback('ServiceNow: Instance is hibernating.'+ this.id);
+   }
    if (error) {
      /**
       * Write this block.
@@ -114,6 +119,9 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
+       this.emit("OFFLINE", { id: this.id });
+       log.error('ServiceNow: Instance is unavailable.' +  this.id);
+       if(callback) callback('ServiceNow: Instance is unavailable.' +  this.id);
    } else {
      /**
       * Write this block.
@@ -125,7 +133,9 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-      this.emitOnline();
+       this.emit("ONLINE", { id: this.id });
+       log.debug('ServiceNow: Instance is Available.' + this.id);
+       if(callback) callback('ServiceNow: Instance is Available.' +  this.id);
    }
  });
 }
