@@ -197,9 +197,9 @@ healthcheck(callback) {
   // You must write the arguments for get and post.
   this.connector.get((_processedData, _processedError) => {
       if (_processedError) {
-      console.error(`\nError returned from GET request:\n${JSON.stringify(_processedError)}`);
+      log.error(`\nError returned from GET request:\n${JSON.stringify(_processedError)}`);
     }
-    console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
+    log.debug(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
   });
   }
   
