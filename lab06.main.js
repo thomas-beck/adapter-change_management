@@ -93,15 +93,14 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
- this.getRecord((result, error) => {
+ this.getRecord((result, error) => { 
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-    log.info("HealthCheck Initiated:  " + response "ERROR :" + error).
-   if(this.isHibernating(result)) {
+  if(this.isHibernating(result)) {
       /** Tests ServiceNow Response for hibernating message using method isHibernating indicating
       module connector.js */
       this.emitStatus("OFFLINE");
@@ -136,8 +135,11 @@ healthcheck(callback) {
       */
       this.emitOnline();
       callback("ServiceNow Instance is Active and Healthy " + this.id);
-    }
- });
+    } 
+    //* If Instance isn't hibernating or returns Error - Emit Online
+    this.emitOnline();
+    log.debug("ServiceNow Is Now ONLINE! :" + id);
+    });
 }
   
 
