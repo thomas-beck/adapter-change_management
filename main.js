@@ -104,7 +104,7 @@ healthcheck(callback) {
    if(this.isHibernating(result)) {
        this.emit("OFFLINE", { id: this.id });
        log.error('ServiceNow: Instance is hibernating.' + this.id);
-       if(callback) callback('ServiceNow: Instance is hibernating.'+ this.id);
+       //if(callback) callback('ServiceNow: Instance is hibernating.'+ this.id);
    }
    if (error) {
      /**
@@ -121,7 +121,7 @@ healthcheck(callback) {
       */
        this.emit("OFFLINE", { id: this.id });
        log.error('ServiceNow: Instance is unavailable.' +  this.id);
-       if(callback) callback('ServiceNow: Instance is unavailable.' +  this.id);
+      // if(callback) callback('ServiceNow: Instance is unavailable.' +  this.id);
    } else {
      /**
       * Write this block.
@@ -135,7 +135,7 @@ healthcheck(callback) {
       */
        this.emit("ONLINE", { id: this.id });
        log.debug('ServiceNow: Instance is Available.' + this.id);
-       if(callback) callback('ServiceNow: Instance is Available.' +  this.id);
+       //if(callback) callback('ServiceNow: Instance is Available.' +  this.id);
    }
  });
 }
