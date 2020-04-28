@@ -94,19 +94,19 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
- this.getRecord((result, error) => {
+ this.getRecord((_processedData, _processedError) => {
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(this.isHibernating(result)) {
+   if(this.isHibernating(_processedData)) {
        this.emit("OFFLINE", { id: this.id });
        log.error('ServiceNow: Instance is hibernating.' + this.id);
-       //if(callback) callback('ServiceNow: Instance is hibernating.'+ this.id);
+       //callback('ServiceNow: Instance is hibernating.'+ this.id);
    }
-   if (error) {
+   if (_processedError) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -121,7 +121,7 @@ healthcheck(callback) {
       */
        this.emit("OFFLINE", { id: this.id });
        log.error('ServiceNow: Instance is unavailable.' +  this.id);
-      // if(callback) callback('ServiceNow: Instance is unavailable.' +  this.id);
+       //callback('ServiceNow: Instance is unavailable.' +  this.id);
    } else {
      /**
       * Write this block.
@@ -195,10 +195,14 @@ healthcheck(callback) {
      */
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
-  this.connector.get((_processedData, _processedError) => callback(_processedData, _processedError))
-  
+  this.connector.get((_processedData, _processedError) => {
+      if (_processedError) {
+      console.error(`\nError returned from GET request:\n${JSON.stringify(_processedError)}`);
+    }
+    console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
+  });
   }
-
+  
   /**
    * @memberof ServiceNowAdapter
    * @method postRecord
