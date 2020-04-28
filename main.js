@@ -100,7 +100,7 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(this.isHibernating) {
+   if(this.isHibernating(result)) {
       /** Tests ServiceNow Response for hibernating message using method isHibernating indicating
       module connector.js */
       this.emitStatus("OFFLINE");
