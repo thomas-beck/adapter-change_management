@@ -120,8 +120,7 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-      this.emitStatus("OFFLINE");
-      log.error("Error returned by External System: " + this.id);
+      this.emitOffline();
       callback("Error returned by External System: " + this.id);
    } else {
      /**
@@ -134,8 +133,7 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-      this.emitStatus("ONLINE");
-      log.debug("ServiceNow Instance is Active and Healthy " + this.id);
+      this.emitOnline();
       callback("ServiceNow Instance is Active and Healthy " + this.id);
     }
  });
