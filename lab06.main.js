@@ -82,7 +82,8 @@ class ServiceNowAdapter extends EventEmitter {
     // in its own method.
     this.healthcheck();
   }
-/**
+
+  /**
  * @memberof ServiceNowAdapter
  * @method healthcheck
  * @summary Check ServiceNow Health
@@ -93,14 +94,20 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
- this.getRecord((result, error) => {
+ this.emitOnline();   
+ this.getRecord((_processedData, _processedError) => {
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if (error) {
+   if(this.isHibernating(_processedData)) {
+       this.emit("OFFLINE", { id: this.id });
+       log.error('ServiceNow: Instance is hibernating.' + this.id);
+       //callback('ServiceNow: Instance is hibernating.'+ this.id);
+   }
+   if (_processedError) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -113,7 +120,9 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-      this.emitOffline();
+       this.emit("OFFLINE", { id: this.id });
+       log.error('ServiceNow: Instance is unavailable.' +  this.id);
+       //callback('ServiceNow: Instance is unavailable.' +  this.id);
    } else {
      /**
       * Write this block.
@@ -125,25 +134,12 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-      this.emitOnline();
+       this.emit("ONLINE", { id: this.id });
+       log.debug('ServiceNow: Instance is Available.' + this.id);
+       //if(callback) callback('ServiceNow: Instance is Available.' +  this.id);
    }
  });
 }
-  /**
-   * @memberof ServiceNowAdapter
-   * @method healthcheck
-   * @summary Check ServiceNow Health
-   * @description Verifies external system is available and healthy.
-   *   Calls method emitOnline if external system is available.
-   *
-   * @param {ServiceNowAdapter~requestCallback} [callback] - The optional callback
-   *   that handles the response.
-   */
-  oldHealthcheck(callback) {
-    // We will build this method in a later lab. For now, it will emulate
-    // a healthy integration by emmitting ONLINE.
-    this.emitOnline();
-  }
 
   /**
    * @memberof ServiceNowAdapter
@@ -203,11 +199,14 @@ healthcheck(callback) {
   this.connector.get((_processedData, _processedError) => {
      if (_processedError) {
       console.error(`\nError returned from GET request:\n${JSON.stringify(_processedError)}`);
+      _processedError = JSON.stringify(_processedError);
     }
-    console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
+    console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`);
+    _processedData = JSON.stringify(_processedData);
   });
+  
   }
-
+  
   /**
    * @memberof ServiceNowAdapter
    * @method postRecord
