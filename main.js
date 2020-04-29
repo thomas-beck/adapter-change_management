@@ -93,19 +93,19 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((_processedData, _processedError) => {
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(this._processedData)}`)
+   this.getRecord((_response, _error) => {
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(this._response)}`)
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(this.isHibernating(_processedData)) {
+   if(this.isHibernating(_response)) {
         this.emitStatus("OFFLINE");
         log.error('ServiceNow: Instance is hibernating.' + this.id);
    }
-   if (_processedError) {
+   if (_error) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -190,8 +190,9 @@ healthcheck(callback) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
       }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
-   
-    return(_processedData, _processedError);
+    const _response = _processedData;
+    const _error = _processedError
+    return(_response, _error);
   }));
   
   }
