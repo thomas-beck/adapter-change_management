@@ -187,7 +187,6 @@ healthcheck(callback) {
      */
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
-  callback(
   this.connector.get((_processedData, _processedError) => {
     
      if (_processedError) {
@@ -196,7 +195,7 @@ healthcheck(callback) {
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
     
     return(_processedData, _processedError);
-  }));
+  });
   
   }
 
