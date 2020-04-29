@@ -175,8 +175,8 @@ healthcheck(callback) {
    * @param {ServiceNowAdapter~requestCallback} callback - The callback that
    *   handles the response.
    */
-  getRecord((_processedData, _processedError) => callback(_processedData,_processedError) {
-    /**
+  getRecord(callback) {
+     /**
      * Write the body for this function.
      * The function is a wrapper for this.connector's get() method.
      * Note how the object was instantiated in the constructor().
@@ -184,6 +184,7 @@ healthcheck(callback) {
      */
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
+  callback(
   this.connector.get((_processedData, _processedError) => {
      if (_processedError) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
@@ -191,7 +192,7 @@ healthcheck(callback) {
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
    
     return(_processedData, _processedError);
-  });
+  }));
   
   }
 
