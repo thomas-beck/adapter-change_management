@@ -25,8 +25,8 @@ const EventEmitter = require('events').EventEmitter;
  *   class.
  */
 class ServiceNowAdapter extends EventEmitter {
-
-  /**
+   
+   /**
    * Here we document the ServiceNowAdapter class' callback. It must follow IAP's
    *   data-first convention.
    * @callback ServiceNowAdapter~requestCallback
@@ -67,7 +67,9 @@ class ServiceNowAdapter extends EventEmitter {
       serviceNowTable: this.props.serviceNowTable
     });
   }
+  
 
+ 
   /**
    * @memberof ServiceNowAdapter
    * @method connect
@@ -93,9 +95,9 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((_result, _error) => {
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(this._result)}`)
-    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(this._error)}`)
+   this.getRecord((result, error) => {
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(result)}`)
+    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(error)}`)
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
@@ -191,9 +193,6 @@ healthcheck(callback) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
       }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
-    let _result = processedData;
-    let _error = processedError;
-    return(_result, _error);
   }));
   
   }
