@@ -93,9 +93,9 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((_processeData, _processedError) => {
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(_processedData)}`)
-    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(_processedError)}`)
+   this.getRecord((_result, _error) => {
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(_result)}`)
+    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(_error)}`)
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
@@ -191,7 +191,9 @@ healthcheck(callback) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
       }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
-    return(_processedData, _processedError);
+    let _result = processedResult;
+    let _error = processedError;
+    return(_result, _error);
   }));
   
   }
