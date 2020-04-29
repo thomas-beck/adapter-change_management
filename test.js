@@ -206,6 +206,7 @@ healthcheck(callback) {
     }
     console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
   });
+  callback(_processedData,_processedError);
   }
 
   /**
