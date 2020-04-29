@@ -199,7 +199,6 @@ healthcheck(callback) {
      }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
     var _response = this._processedData;
-    var _response = _processedData;
     return(_response, _error);
   });
   
