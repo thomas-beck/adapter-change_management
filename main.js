@@ -95,8 +95,8 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((result, error) => {
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(result)}`)
+   this.getRecord((response, error ) => {
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(response)}`)
     console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(error)}`)
    /**
     * For this lab, complete the if else conditional
@@ -135,7 +135,7 @@ healthcheck(callback) {
       * responseData parameter.
       */
      this.emitStatus("ONLINE");
-        log.error('ServiceNow: Instance is available.' + this.id);
+        log.debug('ServiceNow: Instance is available.' + this.id);
   // }
  });
 }
