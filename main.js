@@ -101,7 +101,8 @@ healthcheck(callback) {
     * the blocks for each branch.
     */
    if(this.isHibernating(_processedData)) {
-       this.emitOffline();
+       this.emitStatus("OFFLINE");
+        log.error('ServiceNow: Instance is hibernating.' + this.id);
    }
    if (_processedError) {
      /**
@@ -116,7 +117,8 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-      this.emitOffline();
+      this.emitStatus("OFFLINE");
+        log.error('ServiceNow: Instance is unavailable.' + this.id);
    } else {
      /**
       * Write this block.
@@ -128,34 +130,12 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-      this.emitOnline();
+     this.emitStatus("ONLINE");
+        log.error('ServiceNow: Instance is available.' + this.id);
    }
  });
 }
-  /**
-   * @memberof ServiceNowAdapter
-   * @method healthcheck
-   * @summary Check ServiceNow Health
-   * @description Verifies external system is available and healthy.
-   *   Calls method emitOnline if external system is available.
-   *
-   * @param {ServiceNowAdapter~requestCallback} [callback] - The optional callback
-   *   that handles the response.
-   */
-  oldHealthcheck(callback) {
-    // We will build this method in a later lab. For now, it will emulate
-    // a healthy integration by emmitting ONLINE.
-    this.emitOnline();
-  }
-
-  /**
-   * @memberof ServiceNowAdapter
-   * @method emitOffline
-   * @summary Emit OFFLINE
-   * @description Emits an OFFLINE event to IAP indicating the external
-   *   system is not available.
-   */
-  emitOffline() {
+ emitOffline() {
     this.emitStatus('OFFLINE');
     log.warn('ServiceNow: Instance is unavailable.');
   }
