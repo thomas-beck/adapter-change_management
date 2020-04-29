@@ -99,9 +99,8 @@ healthcheck(callback) {
 
     var displayResponse = _response
     var displayError = _error      
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
-    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(displayError)}`)
-   /**
+    //console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
+    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
@@ -125,7 +124,7 @@ healthcheck(callback) {
       * for the callback's errorMessage parameter.
       */
       this.emitStatus("OFFLINE");
-      log.error('ServiceNow: Instance is unavailable.' + this.id);
+      log.error( _error + this.id);
    } else {
      /**
       * Write this block.
