@@ -93,19 +93,20 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((_response, _error) => {
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(_response)}`)
+   this.getRecord((_processeData, _processedError) => {
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(_processedData)}`)
+    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(_processedError)}`)
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(this.isHibernating(_response)) {
-        this.emitStatus("OFFLINE");
-        log.error('ServiceNow: Instance is hibernating.' + this.id);
-   }
-   if (_error) {
+   //if(this.isHibernating(_response)) {
+    //    this.emitStatus("OFFLINE");
+    //    log.error('ServiceNow: Instance is hibernating.' + this.id);
+  // }
+  // if (_error) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -118,9 +119,9 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-      this.emitStatus("OFFLINE");
-        log.error('ServiceNow: Instance is unavailable.' + this.id);
-   } else {
+    //  this.emitStatus("OFFLINE");
+    //    log.error('ServiceNow: Instance is unavailable.' + this.id);
+  // } else {
      /**
       * Write this block.
       * If no runtime problems were detected, emit ONLINE.
@@ -133,7 +134,7 @@ healthcheck(callback) {
       */
      this.emitStatus("ONLINE");
         log.error('ServiceNow: Instance is available.' + this.id);
-   }
+  // }
  });
 }
  emitOffline() {
@@ -190,9 +191,7 @@ healthcheck(callback) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
       }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
-    var response = _processedData;
-     var error = _processedError
-    return(_response, _error);
+    return(_processedData, _processedError);
   }));
   
   }
