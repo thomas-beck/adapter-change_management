@@ -195,10 +195,10 @@ healthcheck(callback) {
   this.connector.get((_processedData, _processedError) => {
      if (_processedError) {
       console.error(`\nError returned from GET request in GetRecord:\n${JSON.stringify(_processedError)}`);
-      var _error = JSON.stringify(_processedError);
+      var _error = this._processedError;
      }
     console.log(`\nResponse returned from GET request in GetRecord:\n${JSON.stringify(_processedData)}`)
-    var _response = this.JSON.stringify(_processedData);
+    var _response = this._processedData;
     var _response = _processedData;
     return(_response, _error);
   });
