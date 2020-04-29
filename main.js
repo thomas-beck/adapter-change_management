@@ -94,6 +94,7 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
+ this.emitOnline();   
  this.getRecord((_processedData, _processedError) => {
    /**
     * For this lab, complete the if else conditional
