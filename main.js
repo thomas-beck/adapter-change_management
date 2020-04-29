@@ -195,7 +195,7 @@ healthcheck(callback) {
      */
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
-  this.connector.get((_processedData, _processedError) =>  { callback(_processedData, _processedError)
+  this.connector.get((_processedData, _processedError) =>  { this.EventEmitter("Passing Data Back" + _proceessedData), callback(_processedData, _processedError)
   });
   }
   
