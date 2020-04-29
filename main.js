@@ -99,8 +99,8 @@ healthcheck(callback) {
 
     var displayResponse = _response
     var displayError = _error      
-    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(_displayResponse)}`)
-    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(_displayError)}`)
+    console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
+    console.log(`\nError returned from GET request in HealthCheck:\n${JSON.stringify(displayError)}`)
    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
