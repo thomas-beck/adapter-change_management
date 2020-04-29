@@ -199,7 +199,7 @@ healthcheck(callback) {
     }
     console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`)
       var _response = JSON.stringify(_processedData);
-    callback(_response, _error);
+    return(_response, _error);
   });
   
   }
