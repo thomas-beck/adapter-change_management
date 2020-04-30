@@ -198,8 +198,9 @@ healthcheck(callback) {
      //         changeTicketArrayJson = JSON.parse(_proceessedData);
      //     }
      //   }
-    changeTicketArrayObject = _processedData;
-    changeTicketArrayObject.forEach(i => console.log(i));
+    changeTicketArrayObject = _processedData.body;
+    console.log("Dumped Response Body:" + changeTicketArrayObject)
+   //changeTicketArrayObject.forEach(i => console.log(i));
     callback(_processedData, _processedError) });
   
   }
