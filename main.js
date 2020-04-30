@@ -198,7 +198,10 @@ healthcheck(callback) {
      //         changeTicketArrayJson = JSON.parse(_proceessedData);
      //     }
      //   }
-        _processedData.json().then(json => console.log(`\nResponse returned ServiceNow :\n${JSON.stringify(json)}`));
+    if(_processedData.includes('results')) {
+        changeTicketArrayObject = _processedData;
+        changeTicketArrayObject.forEach(element => console.log(element));
+    }
         
         
             
