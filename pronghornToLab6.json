@@ -16,32 +16,8 @@
       "input": [],
       "output": {
         "name": "changeTicket",
-        "type": "array",
-        "description": "The first change change management ticket document.",
-        "schema": {
-          "type": "array",
-          "items": {  
-          "title": "changeTicket",
-          "$ref": "changeRequest#/definitions/changeTicket"
-          }
-        }
-      },
-      "roles": [
-        "admin",
-        "engineer",
-        "operator"
-      ],
-      "task": true
-    },
-    {
-      "name": "postRecord",
-      "summary": "Post Change Ticket",
-      "description": "Get  ServiceNow change management ticket.",
-      "input": [],
-      "output": {
-        "name": "changeTicket",
         "type": "object",
-        "description": "Post change change management ticket document.",
+        "description": "The first change change management ticket document.",
         "schema": {
           "title": "changeTicket",
           "$ref": "changeRequest#/definitions/changeTicket"
@@ -54,6 +30,5 @@
       ],
       "task": true
     }
-    
   ]
 }
