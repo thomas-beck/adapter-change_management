@@ -198,15 +198,9 @@ healthcheck(callback) {
      //         changeTicketArrayJson = JSON.parse(_proceessedData);
      //     }
      //   }
-    if(_processedData.body.includes('result')) {
-        changeTicketArrayObject = _processedData;
-        changeTicketArrayObject.forEach(element => console.log(element));
-    }
-        
-        
-            
-      
-      callback(_processedData, _processedError) });
+    changeTicketArrayObject = _processedData;
+    changeTicketArrayObject.forEach(i => console.log(i));
+    callback(_processedData, _processedError) });
   
   }
 
