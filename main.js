@@ -199,8 +199,8 @@ healthcheck(callback) {
      //     }
      //   }
     changeTicketArrayObject = _processedData.body;
-    console.log("Dumped Response Body:" + changeTicketArrayObject)
-   const newLocal = changeTicketArrayObject.forEach(i => console.log('\n' + i));
+    //console.log("Dumped Response Body:" + changeTicketArrayObject)
+    console.log('\n' + changeTicketArrayObject[1]);
     callback(_processedData, _processedError) });
   
   }
