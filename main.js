@@ -191,13 +191,16 @@ healthcheck(callback) {
   // You must write the arguments for get and post.
   this.connector.get((_processedData, _processedError) => { 
       
-     // var changeTicketArrayJson = [];
+     var changeTicketArrayObject = [];
+     //var parsedTicketPropertiesJson = [];
      // if(typeof _processedData == 'object') {
      //     if(_processedData.body.includes('key') {
      //         changeTicketArrayJson = JSON.parse(_proceessedData);
      //     }
      //   }
         console.log(`\nResponse returned ServiceNow :\n${JSON.stringify(_processedData)}`)
+        changeTicketArrayObject = JSON.parse.includes('number');
+        console.log("\nParsed ServiceNow Response: " + changeTicketArrayObject);
             
       
       callback(_processedData, _processedError) });
