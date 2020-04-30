@@ -200,7 +200,7 @@ healthcheck(callback) {
      //   }
     changeTicketArrayObject = _processedData.body;
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
-    console.log('\n' + changeTicketArrayObject[1]);
+    console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArray[1])}`)
     callback(_processedData, _processedError) });
   
   }
