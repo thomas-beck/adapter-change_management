@@ -190,7 +190,7 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   this.connector.get((_processedData, _processedError) => { 
-      
+    var array = []; 
     array = JSON.parse(_processedData.body);
     for(var idx in array) {
         var item = array[idx];
