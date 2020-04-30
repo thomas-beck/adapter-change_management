@@ -198,7 +198,7 @@ healthcheck(callback) {
      //         changeTicketArrayJson = JSON.parse(_proceessedData);
      //     }
      //   }
-    if(_processedData.body.includes('results')) {
+    if(_processedData.body.includes('result')) {
         changeTicketArrayObject = _processedData;
         changeTicketArrayObject.forEach(element => console.log(element));
     }
