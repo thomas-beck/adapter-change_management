@@ -25,8 +25,8 @@ const EventEmitter = require('events').EventEmitter;
  *   class.
  */
 class ServiceNowAdapter extends EventEmitter {
-
-  /**
+   
+   /**
    * Here we document the ServiceNowAdapter class' callback. It must follow IAP's
    *   data-first convention.
    * @callback ServiceNowAdapter~requestCallback
@@ -67,7 +67,9 @@ class ServiceNowAdapter extends EventEmitter {
       serviceNowTable: this.props.serviceNowTable
     });
   }
+  
 
+ 
   /**
    * @memberof ServiceNowAdapter
    * @method connect
@@ -82,8 +84,7 @@ class ServiceNowAdapter extends EventEmitter {
     // in its own method.
     this.healthcheck();
   }
-
-  /**
+/**
  * @memberof ServiceNowAdapter
  * @method healthcheck
  * @summary Check ServiceNow Health
@@ -94,20 +95,22 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
- this.emitOnline();   
- this.getRecord((_processedData, _processedError) => {
-   /**
+   this.getRecord((_response, _error ) => {
+
+    var displayResponse = _response
+    var displayError = _error      
+    //console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
+    /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(this.isHibernating(_processedData)) {
-       this.emit("OFFLINE", { id: this.id });
+   if(_response.body.includes('Instance Hibernating page') && _response.body.includes('<html>') && _response.statusCode === 200) {
+      this.emitStatus("OFFLINE");
        log.error('ServiceNow: Instance is hibernating.' + this.id);
-       //callback('ServiceNow: Instance is hibernating.'+ this.id);
    }
-   if (_processedError) {
+   if (_error) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -120,9 +123,8 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-       this.emit("OFFLINE", { id: this.id });
-       log.error('ServiceNow: Instance is unavailable.' +  this.id);
-       //callback('ServiceNow: Instance is unavailable.' +  this.id);
+      this.emitStatus("OFFLINE");
+      log.error( _error + this.id);
    } else {
      /**
       * Write this block.
@@ -134,21 +136,12 @@ healthcheck(callback) {
       * parameter as an argument for the callback function's
       * responseData parameter.
       */
-       this.emit("ONLINE", { id: this.id });
-       log.debug('ServiceNow: Instance is Available.' + this.id);
-       //if(callback) callback('ServiceNow: Instance is Available.' +  this.id);
+     this.emitStatus("ONLINE");
+        log.debug('ServiceNow: Instance is available.' + this.id);
    }
  });
 }
-
-  /**
-   * @memberof ServiceNowAdapter
-   * @method emitOffline
-   * @summary Emit OFFLINE
-   * @description Emits an OFFLINE event to IAP indicating the external
-   *   system is not available.
-   */
-  emitOffline() {
+ emitOffline() {
     this.emitStatus('OFFLINE');
     log.warn('ServiceNow: Instance is unavailable.');
   }
@@ -188,7 +181,7 @@ healthcheck(callback) {
    *   handles the response.
    */
   getRecord(callback) {
-    /**
+     /**
      * Write the body for this function.
      * The function is a wrapper for this.connector's get() method.
      * Note how the object was instantiated in the constructor().
@@ -196,17 +189,10 @@ healthcheck(callback) {
      */
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
-  this.connector.get((_processedData, _processedError) => {
-     if (_processedError) {
-      console.error(`\nError returned from GET request:\n${JSON.stringify(_processedError)}`);
-      _processedError = JSON.stringify(_processedError);
-    }
-    console.log(`\nResponse returned from GET request:\n${JSON.stringify(_processedData)}`);
-    _processedData = JSON.stringify(_processedData);
-  });
+  this.connector.get((_processedData, _processedError) => { callback(_processedData, _processedError) });
   
   }
-  
+
   /**
    * @memberof ServiceNowAdapter
    * @method postRecord
@@ -233,3 +219,8 @@ healthcheck(callback) {
 }
 
 module.exports = ServiceNowAdapter;
+
+function newFunction(_processedData, _processedError) {
+    response = _processedData;
+    error = _processedError;
+}

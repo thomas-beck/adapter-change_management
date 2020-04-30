@@ -220,7 +220,4 @@ healthcheck(callback) {
 
 module.exports = ServiceNowAdapter;
 
-function newFunction(_processedData, _processedError) {
-    response = _processedData;
-    error = _processedError;
-}
+
