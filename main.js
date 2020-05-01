@@ -207,8 +207,7 @@ healthcheck(callback) {
      ', "change_ticket_key": ' + sys_id + '}'];
     }
     console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`)
-    return(_newJSON);
-  });
+    });
 
     
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
