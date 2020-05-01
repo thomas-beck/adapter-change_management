@@ -210,7 +210,30 @@ healthcheck(callback) {
     }
     });
   }
-
+   /**
+   * @memberof ServiceNowAdapter
+   * @method postRecord
+   * @summary Create ServiceNow Record
+   * @description Creates a record in ServiceNow.
+   *
+   * @param {ServiceNowAdapter~requestCallback} callback - The callback that
+   *   handles the response.node
+   */
+ postRecord(callback) {
+    /**
+     * Write the body for this function.
+     * The function is a wrapper for this.connector's post() method.
+     * Note how the object was instantiated in the constructor().
+     * post() takes a callback function.
+     */
+     this.connector.post((_processedData, _processedError) => {
+     if (_processedError) {
+      console.error(`\nError returned from POST request:\n${JSON.stringify(_processedError)}`);
+    }
+    console.log(`\nResponse returned from POST request:\n${JSON.stringify(_processedData)}`)
+  });
+  }
+}
   /**
    * @memberof ServiceNowAdapter
    * @method postRecord
