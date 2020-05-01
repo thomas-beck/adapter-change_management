@@ -192,7 +192,7 @@ healthcheck(callback) {
   var newJSON = [];
   
   this.connector.get((_processedData, _processedError) => { 
-    var oldJSON = _processedData;
+    
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
@@ -202,26 +202,14 @@ healthcheck(callback) {
     var workStart = jsonData.result[0].work_start;
     var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[0].sys_id;
-    newJSON = JSON.parse(`"{ "change_ticket_number": ` + `${number}`
-     + `, "active": ` + `${active}` + `, "priority": ` + `${priority}` + 
-     `, "description": ` + `${description}` + `, "work_start": ` 
-     + `${workStart}` + `, "work_end": ` + `${workEnd}` + 
-     `, "change_ticket_key": ` + `${sys_id}` + '"}"');
-    }
+   newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
+    
     console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`);
     _processedData = newJSON;
-    callback(_processedData, _processedError)});
-
+    callback(_processedData, _processedError);
     }
-
-    
-
-
-    //console.log("Dumped Response Body:" + changeTicketArrayObject)
-    //console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArrayObject[1])}`)
-    
-
-}
+    });
+  }
 
   /**
    * @memberof ServiceNowAdapter
