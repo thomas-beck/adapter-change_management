@@ -110,7 +110,7 @@ healthcheck(callback) {
       this.emitStatus("OFFLINE");
        log.error('ServiceNow: Instance is hibernating.' + this.id);
    }
-   if (_error) {
+   if (_processedError) {
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -124,7 +124,7 @@ healthcheck(callback) {
       * for the callback's errorMessage parameter.
       */
       this.emitStatus("OFFLINE");
-      log.error( _error + this.id);
+      log.error( _processedError + this.id);
    } else {
      /**
       * Write this block.
