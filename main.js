@@ -98,8 +98,8 @@ healthcheck(callback) {
    this.getRecord((_processedData, _processedError, _response ) => {
     console.log(`\nProcessed Response returned from Get request:\n${JSON.stringify(_processedData)}`);
     console.log(`\n Response returned from Get request:\n${JSON.stringify(_response)}`);
-    console.log(`\n Raw Response returned from Get request:\n${JSON.stringify(_processedError)}`);
-        //console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
+    //console.log(`\n Raw Response returned from Get request:\n${JSON.stringify(_processedError)}`);
+   
     /**
     * For this lab, complete the if else conditional
     * statements that check if an error exists
