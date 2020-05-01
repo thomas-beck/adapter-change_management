@@ -208,13 +208,18 @@ healthcheck(callback) {
      + workStart + ', "work_end": ' + workEnd + 
      ', "change_ticket_key": ' + sys_id + '}'];
     }
-    console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`)
-    });
+    console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`);
+    _processedData = newJSON;
+    callback(_processedData, _processedError)});
 
-    ;
+    }
+
+    
+
+
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
     //console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArrayObject[1])}`)
-    callback(newJSON, _processedError)};
+    
 
 }
 
