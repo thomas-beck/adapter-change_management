@@ -191,9 +191,10 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   var newJSON = [];
-  var _response = _processedData
+  
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
+    var _response = _processedData;
     if(detectObject == 'object') {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
