@@ -193,7 +193,7 @@ healthcheck(callback) {
   
   this.connector.get((_processedData, _processedError) => { 
     var oldJSON = _processedData;
-    if(oldJSON.body.includes('result')) {
+    if(_processedData.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
