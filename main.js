@@ -209,10 +209,10 @@ healthcheck(callback) {
     console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`)
     });
 
-    
+    _processedData = newJSON;
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
     //console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArrayObject[1])}`)
-    callback(_newJSON, _processedError)};
+    callback(_processedData, _processedError)};
   
   }
 
