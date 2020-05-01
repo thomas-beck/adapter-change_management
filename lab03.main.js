@@ -98,7 +98,7 @@ function processRequestResults(error, response, body, callback) {
     } else {
       callback.data = response;
     }
-    return (callback.data, callback.error);
+    return callback(callback.data, callback.error);
 }
 /**
  * @function sendRequest
