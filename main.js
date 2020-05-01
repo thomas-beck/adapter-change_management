@@ -246,15 +246,7 @@ healthcheck(callback) {
     });
   }
 }
-  /**
-   * @memberof ServiceNowAdapter
-   * @method postRecord
-   * @summary Create ServiceNow Record
-   * @description Creates a record in ServiceNow.
-   *
-   * @param {ServiceNowAdapter~requestCallback} callback - The callback that
-   *   handles the response.node
-   */
+ 
   
 module.exports = ServiceNowAdapter;
 
