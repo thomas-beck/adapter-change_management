@@ -230,7 +230,7 @@ healthcheck(callback) {
   this.connector.post((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
-    if(detectObject == 'object') {
+    if(detectObject.body.includes('body')) {
     console.log("DetectDataObject in Post:" + detectData);  
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
