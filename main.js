@@ -95,8 +95,10 @@ class ServiceNowAdapter extends EventEmitter {
  *   that handles the response.
  */
 healthcheck(callback) {
-   this.getRecord((_processedData, _processedError ) => {
-    console.log(`\nResponse returned from POST request:\n${JSON.stringify(_processedData)}`);
+   this.getRecord((_processedData, _processedError, _response ) => {
+    console.log(`\nProcessed Response returned from Get request:\n${JSON.stringify(_processedData)}`);
+    console.log(`\n Response returned from Get request:\n${JSON.stringify(_response)}`);
+    console.log(`\n Raw Response returned from Get request:\n${JSON.stringify(_processedError)}`);
         //console.log(`\nResponse returned from GET request in HealthCheck:\n${JSON.stringify(displayResponse)}`)
     /**
     * For this lab, complete the if else conditional
@@ -104,7 +106,8 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   if(_processedData.body.includes('Instance Hibernating page') && _processedData.body.includes('<html>') && _processedData.statusCode === 200) {
+   v
+   if(_processedError.body.includes('Instance Hibernating page') && _processedData.body.includes('<html>') && _processedData.statusCode === 200) {
       this.emitStatus("OFFLINE");
        log.error('ServiceNow: Instance is hibernating.' + this.id);
    }
@@ -188,10 +191,10 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   var newJSON = [];
-  
+  var _response = _processedData
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
-    if(detectObject) {
+    if(detectObject == 'object') {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
@@ -202,7 +205,7 @@ healthcheck(callback) {
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
-    callback(_processedData, _processedError);
+    callback(_processedData, _processedError, _response);
     }
     });
   }
