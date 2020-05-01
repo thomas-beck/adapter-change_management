@@ -190,18 +190,30 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   this.connector.get((_processedData, _processedError) => { 
-    var array = []; 
-    array = JSON.parse(_processedData.body);
-    for(var idx in array) {
-        var item = array[idx];
-        for(var key in item) {
-            var value = item[key];
-            console.log("\n" + value);
-        }
+    
+    if(_processedData.body.includes('result')) {
+    let jsonData = JSON.parse(_processedData.body);
+    var number = jsonData.result[0].number;
+    var active = jsonData.result[0].active;
+    var priority = jsonData.result[0].priority;
+    var description = jsonData.result[0].description;
+    var workStart = jsonData.result[0].work_start;
+    var workEnd = jsonData.result[0].work_end;
+    var sys_id = jsonData.result[0].sys_id;
+    var newJSON = ['{"change_ticket_number": ' + number
+     + '"active": ' + active + ', "priority": ' + priority + 
+     ', "description": ' + description + ', "work_start": ' 
+     + workStart + ', "work_end": ' + workEnd + 
+     ', "change_ticket_key": ' + sys_id + '}'];
     }
+    console.log(`\nResponse returned from POST request:\n${JSON.stringify(newJSON)}`)
+    return(_newJSON);
+  });
+
+    
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
     //console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArrayObject[1])}`)
-    callback(_processedData, _processedError) });
+    callback(_newJSON, _processedError) });
   
   }
 
