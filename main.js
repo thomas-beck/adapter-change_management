@@ -106,8 +106,7 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
-   v
-   if(_processedError.body.includes('Instance Hibernating page') && _processedData.body.includes('<html>') && _processedData.statusCode === 200) {
+      if(_processedError.body.includes('Instance Hibernating page') && _processedData.body.includes('<html>') && _processedData.statusCode === 200) {
       this.emitStatus("OFFLINE");
        log.error('ServiceNow: Instance is hibernating.' + this.id);
    }
