@@ -202,7 +202,7 @@ healthcheck(callback) {
     var workStart = jsonData.result[0].work_start;
     var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[0].sys_id;
-    newJSON = eval('{"change_ticket_number": ' + number
+    newJSON = evaJSON.parse('{"change_ticket_number": ' + number
      + '"active": ' + active + ', "priority": ' + priority + 
      ', "description": ' + description + ', "work_start": ' 
      + workStart + ', "work_end": ' + workEnd + 
