@@ -190,9 +190,10 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   var newJSON = [];
-  this.connector.get((_processedData, _processedError) => { 
   
-    if(_processedData.body.includes('result')) {
+  this.connector.get((_processedData, _processedError) => { 
+    var oldJSON = _processedData;
+    if(oldJSON.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
