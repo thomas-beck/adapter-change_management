@@ -192,8 +192,8 @@ healthcheck(callback) {
   var newJSON = [];
   
   this.connector.get((_processedData, _processedError) => { 
-    
-    if(_processedData.body.includes('result')) {
+    var detectObject = typeof _processedData;
+    if(detectObject) {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
