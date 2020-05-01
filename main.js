@@ -225,12 +225,25 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-     this.connector.post((_processedData, _processedError) => {
-     if (_processedError) {
-      console.error(`\nError returned from POST request:\n${JSON.stringify(_processedError)}`);
+    var newJSON = [];
+  
+  this.connector.get((_processedData, _processedError) => { 
+    var detectObject = typeof _processedData;
+    var _response = _processedData;
+    if(detectObject == 'object') {
+    let jsonData = JSON.parse(_processedData.body);
+    var number = jsonData.result[0].number;
+    var active = jsonData.result[0].active;
+    var priority = jsonData.result[0].priority;
+    var description = jsonData.result[0].description;
+    var workStart = jsonData.result[0].work_start;
+    var workEnd = jsonData.result[0].work_end;
+    var sys_id = jsonData.result[0].sys_id;
+   newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
+   _processedData = newJSON;
+    callback(_processedData, _processedError, _response);
     }
-    console.log(`\nResponse returned from POST request:\n${JSON.stringify(_processedData)}`)
-  });
+    });
   }
 }
   /**
