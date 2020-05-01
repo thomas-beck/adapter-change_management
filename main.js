@@ -212,7 +212,7 @@ healthcheck(callback) {
     
     //console.log("Dumped Response Body:" + changeTicketArrayObject)
     //console.log(`\nResponse returned from GET request:\n${JSON.stringify(changeTicketArrayObject[1])}`)
-    callback(_newJSON, _processedError) });
+    callback(_newJSON, _processedError)};
   
   }
 
