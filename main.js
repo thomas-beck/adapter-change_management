@@ -194,7 +194,7 @@ healthcheck(callback) {
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
-    if(_processesData.body.includes(key)) {
+    if(_processedData.body.includes(key)) {
     var recordCount =  1;
     for( var i = 0; i < recordCount; i++) {   
     let jsonData = JSON.parse(_processedData.body);
