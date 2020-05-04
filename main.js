@@ -195,7 +195,7 @@ healthcheck(callback) {
     var detectObject = typeof _processedData;
     var _response = _processedData;
     if(detectObject == 'object') {
-    let jsonData = JSON.parse(_respsonse);
+    let jsonData = JSON.parse(_response);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
