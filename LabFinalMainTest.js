@@ -190,12 +190,14 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   var newJSON = [];
-  
+  //  Set # of Records to Process
+  var recordCount = 1;
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
     if(detectObject == 'object') {
-    let jsonData = JSON.parse(_respsonse);
+    let jsonData = JSON.parse(_processedData.body);
+    for( var i = 0; i < recordCount; i++) {
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
@@ -205,6 +207,7 @@ healthcheck(callback) {
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
+    }
     callback(_processedData, _processedError, _response);
     }
     });
@@ -230,6 +233,7 @@ healthcheck(callback) {
   this.connector.post((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
+    
     if(detectObject == 'object') {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
@@ -240,21 +244,14 @@ healthcheck(callback) {
     var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
-   _processedData = newJSON;
-    callback(_processedData, _processedError, _response);
+   _processedData = JSON.parse(newJSON);
+    callback(_processedData, _processedError);
+    
     }
     });
   }
 }
-  /**
-   * @memberof ServiceNowAdapter
-   * @method postRecord
-   * @summary Create ServiceNow Record
-   * @description Creates a record in ServiceNow.
-   *
-   * @param {ServiceNowAdapter~requestCallback} callback - The callback that
-   *   handles the response.node
-   */
+ 
   
 module.exports = ServiceNowAdapter;
 
