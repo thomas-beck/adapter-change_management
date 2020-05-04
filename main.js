@@ -233,8 +233,7 @@ healthcheck(callback) {
   this.connector.post((_processedData, _processedError) => { 
    var detectObject = typeof _processedData;
     var _response = _processedData;
-    var recordCount =  1;
-    for( var i = 0; i < recordCount; i++) {   
+    if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
