@@ -192,6 +192,13 @@ healthcheck(callback) {
   var newJSON = [];
   
   this.connector.get((_processedData, _processedError) => { 
+
+     if(_response.body.includes('Instance Hibernating page') && _response.body.includes('<html>') && _response.statusCode === 200) {
+         this.emitStatus("OFFLINE");
+         log.error('ServiceNow: Instance is hibernating.' + this.id);
+         _processedError = "ServiceNow: Instance is hibernating."
+     } else {
+
     var detectObject = typeof _processedData;
     var _response = _processedData;
     if(detectObject == 'object') {
@@ -205,6 +212,7 @@ healthcheck(callback) {
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
+    }
     callback(_processedData, _processedError, _response);
     }
     });
