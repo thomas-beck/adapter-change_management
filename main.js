@@ -194,7 +194,7 @@ healthcheck(callback) {
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
-    if(processedError = 'Service Now instance is hibernating') {
+    if(_processedError = 'Service Now instance is hibernating') {
 
     } else { 
     var recordCount =  1;
