@@ -194,9 +194,11 @@ healthcheck(callback) {
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
-    if(processedError = 'Service Now instance is hibernating')
+    if(processedError = 'Service Now instance is hibernating') {
 
     } else { 
+    var recordCount =  1;
+    for( var i = 0; i < recordCount; i++) {   
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
@@ -208,8 +210,8 @@ healthcheck(callback) {
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
     }
-    callback(_processedData, _processedError, _response);
     }
+    callback(_processedData, _processedError, _response);
     });
   }
    /**
@@ -232,9 +234,7 @@ healthcheck(callback) {
   
   this.connector.post((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
-    var recordCount = 1;
     var _response = _processedData;
-    for( var i = 0; i < recordCount; i++)
     if(detectObject == 'object') {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[0].number;
@@ -246,7 +246,6 @@ healthcheck(callback) {
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
-    }
     callback(_processedData, _processedError, _response);
     }
     });
