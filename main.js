@@ -233,7 +233,6 @@ healthcheck(callback) {
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
-    console.log(`\nProcessed Response returned from POST request:\n${jsonData}`);
     var number = jsonData.result.number;
     var active = jsonData.result.active;
     var priority = jsonData.result.priority;
