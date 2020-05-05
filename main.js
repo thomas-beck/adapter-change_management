@@ -209,7 +209,7 @@ healthcheck(callback) {
    _processedData = newJSON;
     }
     }
-    callback(_processedData, _processedError);
+    callback(_processedData, _processedError,_response);
     });
   }
    /**
