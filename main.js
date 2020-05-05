@@ -234,13 +234,13 @@ healthcheck(callback) {
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     console.log(`\nProcessed Response returned from POST request:\n${JSON.stringify(jsonData)}`);
-    //var number = jsonData.result[0].number;
-    var active = jsonData.result[0].active;
-    var priority = jsonData.result[0].priority;
-    var description = jsonData.result[0].description;
-    var workStart = jsonData.result[0].work_start;
-    var workEnd = jsonData.result[0].work_end;
-    var sys_id = jsonData.result[0].sys_id;
+    var number = jsonData.result.number;
+    var active = jsonData.result.active;
+    var priority = jsonData.result.priority;
+    var description = jsonData.result.description;
+    var workStart = jsonData.result.work_start;
+    var workEnd = jsonData.result.work_end;
+    var sys_id = jsonData.result.sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = JSON.parse(newJSON);
     }
