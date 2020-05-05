@@ -97,7 +97,7 @@ class ServiceNowAdapter extends EventEmitter {
 healthcheck(callback) {
    
    this.postRecord((_processedData, _processedError, _response ) => {
-    console.log(`\nProcessed Response returned from Get request:\n${JSON.stringify(_processedData)}`);
+    console.log(`\nProcessed Response returned from Post in Health request:\n${JSON.stringify(_processedData)}`);
     //console.log(`\n Response returned from Get request:\n${JSON.stringify(_response)}`);
     //console.log(`\n Raw Response returned from Get request:\n${JSON.stringify(_processedError)}`);
    
@@ -197,7 +197,7 @@ healthcheck(callback) {
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
-    var number = jsonData.result[0].number;
+    //var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
     var description = jsonData.result[0].description;
@@ -233,7 +233,7 @@ healthcheck(callback) {
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
-    console.log(`\nProcessed Response returned from Get request:\n${JSON.stringify(jsonData)}`);
+    console.log(`\nProcessed Response returned from POST request:\n${JSON.stringify(jsonData)}`);
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
