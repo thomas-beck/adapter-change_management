@@ -206,11 +206,10 @@ healthcheck(callback) {
     var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
-   newJSON = Object.entries(newJSON);
    _processedData = newJSON;
     }
     }
-    callback(_processedData, _processedError, _response);
+    callback(_processedData, _processedError);
     });
   }
    /**
