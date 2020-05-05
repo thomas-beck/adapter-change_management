@@ -197,7 +197,7 @@ healthcheck(callback) {
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
-    //var number = jsonData.result[0].number;
+    var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
     var description = jsonData.result[0].description;
@@ -234,7 +234,7 @@ healthcheck(callback) {
     if(_processedData.body.includes('result')) {
     let jsonData = JSON.parse(_processedData.body);
     console.log(`\nProcessed Response returned from POST request:\n${JSON.stringify(jsonData)}`);
-    var number = jsonData.result[0].number;
+    //var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
     var description = jsonData.result[0].description;
