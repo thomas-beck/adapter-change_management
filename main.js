@@ -195,19 +195,16 @@ healthcheck(callback) {
     var detectObject = typeof _processedData;
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
-    var recordCount =  1;
-    for( var i = 0; i < recordCount; i++) {   
     let jsonData = JSON.parse(_processedData.body);
-    var number = jsonData.result[i].number;
-    var active = jsonData.result[i].active;
-    var priority = jsonData.result[i].priority;
-    var description = jsonData.result[i].description;
-    var workStart = jsonData.result[i].work_start;
-    var workEnd = jsonData.result[i].work_end;
+    var number = jsonData.result[0].number;
+    var active = jsonData.result[0].active;
+    var priority = jsonData.result[0].priority;
+    var description = jsonData.result[0].description;
+    var workStart = jsonData.result[0].work_start;
+    var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[this.id].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
-    }
     }
     callback(_processedData, _processedError,_response);
     });
@@ -234,19 +231,16 @@ healthcheck(callback) {
    var detectObject = typeof _processedData;
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
-    var recordCount =  1;
-    for( var i = 0; i < recordCount; i++) {   
     let jsonData = JSON.parse(_processedData.body);
-    var number = jsonData.result[i].number;
-    var active = jsonData.result[i].active;
-    var priority = jsonData.result[i].priority;
-    var description = jsonData.result[i].description;
-    var workStart = jsonData.result[i].work_start;
-    var workEnd = jsonData.result[i].work_end;
+    var number = jsonData.result[0].number;
+    var active = jsonData.result[0].active;
+    var priority = jsonData.result[0].priority;
+    var description = jsonData.result[0].description;
+    var workStart = jsonData.result[0].work_start;
+    var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[this.id].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
-    }
     }
     callback(_processedData, _processedError, _response);
     });
