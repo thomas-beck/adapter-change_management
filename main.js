@@ -206,7 +206,7 @@ healthcheck(callback) {
     var workStart = jsonData.result[i].work_start;
     var workEnd = jsonData.result[i].work_end;
     var sys_id = jsonData.result[i].sys_id;
-   newJSON = '{ "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id }';
+   newJSON = JSON.parse('{ "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id }');
    _processedData = newJSON;
     }
     }
