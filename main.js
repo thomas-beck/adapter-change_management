@@ -232,7 +232,7 @@ healthcheck(callback) {
    var detectObject = typeof _processedData;
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
-    let jsonData = JSON.parse(_processedData.body);
+    let jsonData = _processedData.body;
     var number = jsonData.result[0].number;
     var active = jsonData.result[0].active;
     var priority = jsonData.result[0].priority;
@@ -241,7 +241,7 @@ healthcheck(callback) {
     var workEnd = jsonData.result[0].work_end;
     var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
-   _processedData = newJSON;
+   _processedData = JSON.parse(newJSON);
     }
     callback(_processedData, _processedError, _response);
     });
