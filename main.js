@@ -196,6 +196,7 @@ healthcheck(callback) {
     var detectObject = typeof _processedData;
     var _response = _processedData;
     if(_processedData.body.includes('result')) {
+    var recordCount = 1;
     for(i = 0; i < recordCount; i++)    {
     let jsonData = JSON.parse(_processedData.body);
     var number = jsonData.result[i].number;
