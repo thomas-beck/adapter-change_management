@@ -202,7 +202,7 @@ healthcheck(callback) {
     var description = jsonData.result[0].description;
     var workStart = jsonData.result[0].work_start;
     var workEnd = jsonData.result[0].work_end;
-    var sys_id = jsonData.result[this.id].sys_id;
+    var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
     }
@@ -238,7 +238,7 @@ healthcheck(callback) {
     var description = jsonData.result[0].description;
     var workStart = jsonData.result[0].work_start;
     var workEnd = jsonData.result[0].work_end;
-    var sys_id = jsonData.result[this.id].sys_id;
+    var sys_id = jsonData.result[0].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
    _processedData = newJSON;
     }
