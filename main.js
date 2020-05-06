@@ -191,7 +191,7 @@ healthcheck(callback) {
  //  Test the object's get and post methods.
   // You must write the arguments for get and post.
   var newJSON = [];
-  
+  var arrayOfArrays = [];
   this.connector.get((_processedData, _processedError) => { 
     var detectObject = typeof _processedData;
     var _response = _processedData;
@@ -207,8 +207,9 @@ healthcheck(callback) {
     var workEnd = jsonData.result[i].work_end;
     var sys_id = jsonData.result[i].sys_id;
    newJSON = { "change_ticket_number" : number, "active" : active , "priority" : priority , "description" : description , "work_start" : workStart , "work_end" : workEnd , "change_ticket_key" : sys_id };
-   _processedData = newJSON;
+   arrayOfArrays[i] = newJSON
     }
+    _processedData = arrayOfArrays;
     }
     callback(_processedData, _processedError,_response);
     });
